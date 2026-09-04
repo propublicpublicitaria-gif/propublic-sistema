@@ -1,2 +1,1 @@
-import CrudPage from "@/components/CrudPage";
-export default function Pagos(){return <CrudPage config={{table:"payments",title:"Pagos",description:"Registro real de cobros y pagos.",fields:[{name:"sale_id",label:"ID venta"},{name:"client_id",label:"ID cliente"},{name:"amount",label:"Monto (Gs.)",type:"number",step:"0.01",required:true},{name:"method",label:"Método"},{name:"status",label:"Estado",required:true},{name:"notes",label:"Notas"}],columns:["sale_id","client_id","amount","method","status"]}}/>}
+import Shell from "@/components/Shell";import ProPublicApp from "@/components/ProPublicApp";export default function Page(){return <Shell title="Pagos"><ProPublicApp module="pagos"/></Shell>}
