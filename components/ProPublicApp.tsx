@@ -1,6 +1,8 @@
 "use client";
 import {Clients,Products,Discounts} from "@/components/CoreModules";
-import {Quotes,Sales,Payments,Orders} from "@/components/CommerceModules";
+import {Quotes,Sales,Payments} from "@/components/CommerceModules";
+import {Orders} from "@/components/OrdersV2";
 import {Design,Production,Deliveries,Cash} from "@/components/OperationsV2";
-import {Reports,QrReader,Users,Settings,Audit} from "@/components/AdminModules";
+import {Reports,Users,Settings,Audit} from "@/components/AdminModules";
+import {QrReader} from "@/components/QrReaderV2";
 export default function ProPublicApp({module}:{module:string}){switch(module){case"clientes":return <Clients/>;case"productos":return <Products/>;case"descuentos":return <Discounts/>;case"presupuestos":return <Quotes/>;case"ventas":return <Sales/>;case"pagos":return <Payments/>;case"pedidos":return <Orders/>;case"diseno":return <Design/>;case"produccion":return <Production/>;case"entregas":return <Deliveries/>;case"caja":return <Cash/>;case"reportes":return <Reports/>;case"lector-qr":return <QrReader/>;case"usuarios":return <Users/>;case"configuracion":return <Settings/>;case"auditoria":return <Audit/>;default:return null}}
