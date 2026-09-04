@@ -3,23 +3,8 @@ import Link from "next/link";
 import {ReactNode,useEffect,useState} from "react";
 import {createClient} from "@/lib/supabase/client";
 import {Menu,LogOut,X} from "lucide-react";
-const all=[
- ["dashboard","Dashboard",["administrador","vendedor","disenador","produccion"]],
- ["clientes","Clientes",["administrador","vendedor"]],
- ["productos","Productos",["administrador","vendedor"]],
- ["descuentos","Descuentos",["administrador"]],
- ["presupuestos","Presupuestos",["administrador","vendedor"]],
- ["ventas","Ventas",["administrador","vendedor"]],
- ["pagos","Pagos",["administrador","vendedor"]],
- ["pedidos","Pedidos",["administrador","vendedor","disenador","produccion"]],
- ["diseno","Diseño",["administrador","disenador"]],
- ["produccion","Producción",["administrador","produccion"]],
- ["entregas","Entregas",["administrador","vendedor"]],
- ["caja","Caja",["administrador","vendedor"]],
- ["reportes","Reportes",["administrador"]],
- ["lector-qr","Lector QR",["administrador","vendedor","disenador","produccion"]],
- ["usuarios","Usuarios",["administrador"]],
- ["configuracion","Configuración",["administrador"]],
- ["auditoria","Auditoría",["administrador"]],
-] as const;
-export default function Shell({children,title}:{children:ReactNode;title:string}){const [role,setRole]=useState("");const [open,setOpen]=useState(false);const sb=createClient();useEffect(()=>{(async()=>{const {data:{user}}=await sb.auth.getUser();if(user){const {data}=await sb.from("profiles").select("role:roles(name)").eq("id",user.id).single();setRole(data?.role?.name||"")}})()},[]);async function logout(){await sb.auth.signOut();location.href="/login"}const nav=all.filter((x)=>x[2].includes(role as never));return <div className="app"><aside className={open?"side open":"side"}><div className="brand"><img src="/logo.svg" alt="ProPublic"/><button className="sideclose" onClick={()=>setOpen(false)}><X size={18}/></button></div><nav className="nav">{nav.map(([p,n])=><Link key={p} href={"/"+p} onClick={()=>setOpen(false)}>{n}</Link>)}</nav><button className="logout" onClick={logout}><LogOut size={16}/> Cerrar sesión</button></aside><section className="main"><header className="top"><button className="menubtn" onClick={()=>setOpen(true)}><Menu size={20}/></button><strong>{title}</strong><span className="muted">{role||""}</span></header><main className="content">{children}</main></section></div>}
+type NavItem=[string,string,string[]];
+const all:NavItem[]=[
+ ["dashboard","Dashboard",["administrador","vendedor","disenador","produccion"]],["clientes","Clientes",["administrador","vendedor"]],["productos","Productos",["administrador","vendedor"]],["descuentos","Descuentos",["administrador"]],["presupuestos","Presupuestos",["administrador","vendedor"]],["ventas","Ventas",["administrador","vendedor"]],["pagos","Pagos",["administrador","vendedor"]],["pedidos","Pedidos",["administrador","vendedor","disenador","produccion"]],["diseno","Diseño",["administrador","disenador"]],["produccion","Producción",["administrador","produccion"]],["entregas","Entregas",["administrador","vendedor"]],["caja","Caja",["administrador","vendedor"]],["reportes","Reportes",["administrador"]],["lector-qr","Lector QR",["administrador","vendedor","disenador","produccion"]],["usuarios","Usuarios",["administrador"]],["configuracion","Configuración",["administrador"]],["auditoria","Auditoría",["administrador"]]
+];
+export default function Shell({children,title}:{children:ReactNode;title:string}){const[role,setRole]=useState("");const[open,setOpen]=useState(false);const sb=createClient();useEffect(()=>{(async()=>{const{data:{user}}=await sb.auth.getUser();if(!user)return;const{data}=await sb.from("profiles").select("role:roles(name)").eq("id",user.id).single();const r:any=data?.role;setRole(Array.isArray(r)?(r[0]?.name||""):(r?.name||""))})()},[]);async function logout(){await sb.auth.signOut();location.href="/login"}const nav=all.filter(x=>x[2].includes(role));return <div className="app"><aside className={open?"side open":"side"}><div className="brand"><img src="/logo.svg" alt="ProPublic"/><button className="sideclose" onClick={()=>setOpen(false)}><X size={18}/></button></div><nav className="nav">{nav.map(([p,n])=><Link key={p} href={'/'+p} onClick={()=>setOpen(false)}>{n}</Link>)}</nav><button className="logout" onClick={logout}><LogOut size={16}/>Cerrar sesión</button></aside><section className="main"><header className="top"><button className="menubtn" onClick={()=>setOpen(true)}><Menu size={20}/></button><strong>{title}</strong><span className="muted">{role}</span></header><main className="content">{children}</main></section></div>}
