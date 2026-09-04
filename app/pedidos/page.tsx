@@ -1,2 +1,1 @@
-import CrudPage from "@/components/CrudPage";
-export default function Pedidos(){return <CrudPage config={{table:"orders",title:"Pedidos",description:"Seguimiento real de pedidos y entregas.",fields:[{name:"number",label:"N° pedido",required:true},{name:"client_id",label:"ID cliente"},{name:"sale_id",label:"ID venta"},{name:"status",label:"Estado",required:true},{name:"priority",label:"Prioridad",required:true},{name:"due_date",label:"Fecha entrega",type:"date"},{name:"notes",label:"Notas"}],columns:["number","client_id","status","priority","due_date"]}}/>}
+import Shell from "@/components/Shell";import ProPublicApp from "@/components/ProPublicApp";export default function Page(){return <Shell title="Pedidos"><ProPublicApp module="pedidos"/></Shell>}
