@@ -1,2 +1,1 @@
-import CrudPage from "@/components/CrudPage";
-export default function Ventas(){return <CrudPage config={{table:"sales",title:"Ventas",description:"Registro real de ventas.",fields:[{name:"number",label:"N° venta",required:true},{name:"client_id",label:"ID cliente"},{name:"quote_id",label:"ID presupuesto"},{name:"status",label:"Estado",required:true},{name:"total",label:"Total (Gs.)",type:"number",step:"0.01",required:true}],columns:["number","client_id","status","total"]}}/>}
+import Shell from "@/components/Shell";import ProPublicApp from "@/components/ProPublicApp";export default function Page(){return <Shell title="Ventas"><ProPublicApp module="ventas"/></Shell>}
