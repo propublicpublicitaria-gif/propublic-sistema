@@ -1,2 +1,1 @@
-import CrudPage from "@/components/CrudPage";
-export default function Clientes(){return <CrudPage config={{table:"clients",title:"Clientes",description:"Alta, edición y eliminación de clientes.",fields:[{name:"name",label:"Nombre",required:true},{name:"email",label:"Email",type:"email"},{name:"phone",label:"Teléfono"},{name:"address",label:"Dirección"},{name:"notes",label:"Notas"}],columns:["name","email","phone","address"]}}/>}
+import Shell from "@/components/Shell";import ProPublicApp from "@/components/ProPublicApp";export default function Page(){return <Shell title="Clientes"><ProPublicApp module="clientes"/></Shell>}
