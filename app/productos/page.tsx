@@ -1,2 +1,1 @@
-import CrudPage from "@/components/CrudPage";
-export default function Productos(){return <CrudPage config={{table:"products",title:"Productos",description:"Catálogo real de productos y servicios.",fields:[{name:"name",label:"Producto",required:true},{name:"category",label:"Categoría"},{name:"description",label:"Descripción"},{name:"price",label:"Precio (Gs.)",type:"number",step:"0.01",required:true}],columns:["name","category","price"]}}/>}
+import Shell from "@/components/Shell";import ProPublicApp from "@/components/ProPublicApp";export default function Page(){return <Shell title="Productos"><ProPublicApp module="productos"/></Shell>}
