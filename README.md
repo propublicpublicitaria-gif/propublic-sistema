@@ -29,3 +29,6 @@ Este paquete contiene una aplicación Next.js funcional como base integral del s
 
 ## Importante
 Las pantallas de módulos están preparadas como interfaz y navegación integral, pero los formularios CRUD específicos, reglas de permisos por cada operación y reportes avanzados requieren la siguiente iteración de implementación. El SQL incluye una política autenticada amplia como bootstrap; debe sustituirse por las políticas finas de permisos antes de usar datos sensibles en producción.
+
+## Estado técnico
+Última estabilización: se conserva la versión de aplicación que pasó el build de producción y se fuerza una nueva publicación desde `main`.
