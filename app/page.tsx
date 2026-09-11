@@ -1,1 +1,5 @@
-import {redirect} from "next/navigation";export default function Page(){redirect('/dashboard')}
+import PublicCatalog from "../components/public-catalog";
+
+export default function Page() {
+  return <PublicCatalog />;
+}
